@@ -7,6 +7,21 @@ body{
 background-color: #f6f8fc;
 }
 
+
+.modal-content {
+    border-radius: 1rem;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+
 .content{ 
     width: 100vw;
      height: 100vh;

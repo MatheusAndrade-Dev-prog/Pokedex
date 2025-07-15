@@ -4,10 +4,32 @@ const maxRecords = 1164;
 const limit = 10;
 let offset = 0;
 
+function selectPokemon(id) {
+   const modalBody = document.getElementById("pokemonModalBody");
+   const pokemonModal = new bootstrap.Modal(
+      document.getElementById("pokemonModal")
+   );
+
+   pokeApi
+      .getPokemonById(id)
+      .then((pokemon) => {
+         modalBody.innerHTML = convertPokemonToDetailHtml(pokemon); // Use a função que gera o HTML de detalhes
+         pokemonModal.show();
+      })
+      .catch((error) => {
+         console.error("Erro ao carregar detalhes:", error);
+         modalBody.innerHTML =
+            '<p class="text-danger">Falha ao carregar detalhes do Pokémon.</p>';
+         pokemonModal.show();
+      });
+}
+
 function covertPokemonToLi(pokemon) {
    return `
-    <li class="pokemon ${pokemon.type}">
-        <samp class="number">${pokemon.number}</samp>
+    <li class="pokemon ${pokemon.type}" onclick="selectPokemon(${
+      pokemon.number
+   })">
+        <span class="number">#${pokemon.number}</span>
         <span class="name">${pokemon.name}</span>
         <div class="detalhes">
     <ol class="types">
@@ -15,7 +37,7 @@ function covertPokemonToLi(pokemon) {
           .map((type) => `<li class="type ${type}">${type}</li>`)
           .join("")}
     </ol>
-    <img src="${pokemon.photo}" 
+    <img src="${pokemon.photo}"
     alt="${pokemon.name}">
         </div>
        </li>     
