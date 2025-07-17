@@ -28,14 +28,14 @@ function convertPokemonToDetailHtml(pokemon) {
                        .join("")}
                 </ol>
 
-                <h3>Habilidades</h3>
+                <h3 class="habilidades">Habilidades</h3>
                 <ul class="abilities">
                     ${pokemon.habilidades
                        .map((habilidade) => `<li>${habilidade}</li>`)
                        .join("")}
                 </ul>
 
-                <h3>Descrição</h3>
+                <h3 class="descricao">Descrição</h3>
                 <p class="description">${pokemon.description}</p>
                 
                 <h3>Atributos Base</h3>
